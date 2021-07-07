@@ -44,7 +44,7 @@ namespace Otus.Generics.Task.Generics
         /// <param name="id">Идентификатор аккаунта</param>
         /// <typeparam name="K">Тип аккаунта</typeparam>
         /// <returns></returns>
-        public Session<K> Login<K>(int id) 
+        public Session<K> Login<K>(int id)
         {
             var account = _accounts.FirstOrDefault(x => x.Id == id)
             ?? throw new System.Exception($"Account '{id}' not found");
@@ -65,6 +65,7 @@ namespace Otus.Generics.Task.Generics
         {
             var ba = new TTo();
             ba.Login = Guid.NewGuid().ToString().Replace("-", "");
+            ba.UpdateFromUserAccount(account);
             ba.Created = DateTime.Now;
             ba.Id = _idIncreement++;
             _accounts.Add(ba);
