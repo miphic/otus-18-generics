@@ -23,6 +23,7 @@ namespace Otus.Generics.Demo
 
 
         interface IDemo<out T> { }
+        
         class ClassDemo<T> : IDemo<T> { }
 
         public void Show()
@@ -63,14 +64,15 @@ namespace Otus.Generics.Demo
 
 
 
-interface IContrVar<in T> { 
-    void Build(T v);
-}
+    interface IContrVar<in T>
+    {
+        void Build(T v);
+    }
 
-class ContrVar<T> : IContrVar<T>
-{
-    public void Build(T v) {}
-}
+    class ContrVar<T> : IContrVar<T>
+    {
+        public void Build(T v) { }
+    }
 
 
 

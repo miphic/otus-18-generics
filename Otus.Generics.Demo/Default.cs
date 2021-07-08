@@ -1,35 +1,35 @@
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 
 namespace Otus.Generics.Demo
 {
-    public class MyDefault<T>
+    public static class MyDefault
     {
-        public bool Se;
 
 
-        public List<T> CreateEmptyList(int size)
+        public static void DisplayDefault<T>()
         {
-            var res = new List<T>();
+          var val=default(T);
 
-            for (var i = 0; i < size; i++)
-            {
-                res.Add(default(T));
-            }
-
-            return res;
-        }
+            Console.WriteLine($"The value of type {typeof(T)} is: {(val == null ? "null" : val.ToString())}");
+      }
 
     }
+
+    class Foo{}
 
     public class DefaultShower : IBaseDemoShower
     {
         public void Show()
         {
-               // var d=new MyDefault<string>();
-            // d.CreateEmptyArray();
-            // d.Value="";
-            // d.CreateEmptyArray();
+            MyDefault.DisplayDefault<int>();
+
+            MyDefault.DisplayDefault<bool>();
+            MyDefault.DisplayDefault<DateTime>();
+            MyDefault.DisplayDefault<Foo>();
+            MyDefault.DisplayDefault<string>();
+            MyDefault.DisplayDefault<Complex>();
         }
     }
 }

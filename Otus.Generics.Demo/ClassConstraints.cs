@@ -60,8 +60,4 @@ namespace Otus.Generics.Demo
         }
     }
 
-    public class ClassConstraints
-    {
-
-    }
 }

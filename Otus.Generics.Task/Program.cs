@@ -26,18 +26,18 @@ namespace Otus.Generics.Task
             ba = (BigBusinessAccount)ms.CreateAccount(ba);
 
 
-// Апргрейдим аккаунт до бизнеса
+            // Апргрейдим аккаунт до бизнеса
             var privateBa = ms.UpgrageToBusinessAccount<UserAccount, PrivateBussinessAccount>(ua);
 
-// Выводим его наименование
+            // Выводим его наименование
             ms.PrintBusinessInfo(privateBa);
 
-// создаем две сессии
+            // создаем две сессии
             ISession<BaseAccount> session1 = ms.Login<UserAccount>(ua.Id);
             ISession<BigBusinessAccount> session2 = ms.Login<BigBusinessAccount>(ba.Id);
 
 
-// Создаем два логгер
+            // Создаем два логгер
             IBaseLogger<ISession<BigBusinessAccount>> bbLogger = new BigAccountLogger();
             IBaseLogger<ISession<BaseAccount>> baLogger = new BaseAccountLogger();
 
