@@ -1,16 +1,22 @@
 using System;
+using System.Collections.Generic;
 
 namespace Otus.Generics.Demo
 {
 
 
-    class EmptyConstructor { }
+    class EmptyConstructor { 
+
+    }
 
     /// <summary>
     /// Класс без конструктора без параметров 
     /// </summary>
     class FullConstructor
     {
+        public FullConstructor(){
+
+        }
         private int _a;
 
         public FullConstructor(int a)
@@ -73,7 +79,13 @@ namespace Otus.Generics.Demo
         void Start();
         void Go();
     }
-    class Auto : IVehicle
+
+    class HEllo{
+        public void Hello(){
+            Console.WriteLine("Hello");
+        }
+    }
+    class Auto : HEllo, IVehicle
     {
         public void Go()
         => Console.WriteLine("Vrum!");
@@ -87,12 +99,13 @@ namespace Otus.Generics.Demo
 /// 
 /// </summary>
 /// <typeparam name="TV"></typeparam>
-    class Rider<TV> where TV : IVehicle
+    class Rider<TV> where TV :HEllo, IVehicle
     {
         public void RideAVehicle(TV vehicle)
         {
             vehicle.Start();
             vehicle.Go();
+            vehicle.Hello();
         }
     }
 
@@ -103,7 +116,7 @@ namespace Otus.Generics.Demo
         {
 
             // Можно
-            var asInt = new StructConstraint<int>();
+            var asInt = new StructConstraint<DateTime>();
 
             // Ошибка компиляции
             var asString = new StructConstraint<int>();
@@ -113,7 +126,10 @@ namespace Otus.Generics.Demo
             var rider = new Rider<Auto>();
             rider.RideAVehicle(auto);
 
+
+
             var nc = new NewConstraint<EmptyConstructor>();
+            var nc1 = new NewConstraint<FullConstructor>();
 
 
             var kv1 = new ConstraintKeyValue<int, string>(1, "KV1");
@@ -121,6 +137,11 @@ namespace Otus.Generics.Demo
             Console.WriteLine();
             Console.WriteLine($"kv1={kv1} kv2={kv2}");
             Console.WriteLine();
+
+
+
+var l=new List<int>();
+var i=new List<string>();
 
 
         }

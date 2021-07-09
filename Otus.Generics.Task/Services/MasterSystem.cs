@@ -22,7 +22,8 @@ namespace Otus.Generics.Task.Generics
         /// </summary>
         /// <param name="newAccountInfo">Информация об аккаунте</param>
         /// <returns></returns>
-        public BaseAccount CreateAccount(T newAccountInfo)
+        public BaseAccount CreateAccount<T>(T newAccountInfo)
+        where T : BaseAccount
         {
             if (_accounts.Any(x => x.Login == newAccountInfo.Login))
             {
@@ -44,7 +45,7 @@ namespace Otus.Generics.Task.Generics
         /// <param name="id">Идентификатор аккаунта</param>
         /// <typeparam name="K">Тип аккаунта</typeparam>
         /// <returns></returns>
-        public Session<K> Login<K>(int id)
+        public Session<K> Login<K>(int id) where K:BaseAccount
         {
             var account = _accounts.FirstOrDefault(x => x.Id == id)
             ?? throw new System.Exception($"Account '{id}' not found");
@@ -61,7 +62,8 @@ namespace Otus.Generics.Task.Generics
         /// <returns></returns>
         public TTo UpgrageToBusinessAccount<TFrom, TTo>(
              TFrom account)
-             where TTo : BaseAccount
+             where TTo : BaseAccount, IBaseBusinessAccount, new()
+             where TFrom: UserAccount
         {
             var ba = new TTo();
             ba.Login = Guid.NewGuid().ToString().Replace("-", "");
@@ -79,6 +81,7 @@ namespace Otus.Generics.Task.Generics
         /// <param name="account">Аккаунт</param>
         /// <typeparam name="K"></typeparam>
         public void PrintBusinessInfo<K>(K account)
+        where K : IBaseBusinessAccount
         {
             MyConsole.WriteLine(account.GetPrintName());
         }

@@ -12,8 +12,13 @@ namespace Otus.Generics.Demo
         public void PrintMe()
         => Console.WriteLine($"I'm '{val}' and my type is '{typeof(T)}'");
 
+
+
+
         public void PrintMeType<K>(K v)
         => Console.WriteLine($"2. I'm '{v}' and my type is '{v.GetType()}'");
+
+
     }
 
     public class IntroShower : IBaseDemoShower
@@ -28,9 +33,13 @@ namespace Otus.Generics.Demo
             var stringIntro = new Intro<string>("hello");
             stringIntro.PrintMe();
 
+
+
             Console.WriteLine();
 
             stringIntro.PrintMeType(2.0);
+
+
 
             // Можем явно указывать тип
             stringIntro.PrintMeType<bool>(false);
