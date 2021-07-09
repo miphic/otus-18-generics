@@ -11,6 +11,9 @@ namespace Otus.Generics.Demo
 
     }
 
+/// <summary>
+/// Красно-зеленые настройки
+/// </summary>
     class RedAndGreenSettings : IConsoleSettings
     {
         public ConsoleColor Foreground => ConsoleColor.Green;
@@ -18,6 +21,10 @@ namespace Otus.Generics.Demo
         public ConsoleColor Background => ConsoleColor.Red;
     }
 
+
+/// <summary>
+/// Фиолетовые и красные настройки
+/// </summary>
     class CyanAndWhiteSettings
     {
         public ConsoleColor Foreground => ConsoleColor.Green;
@@ -25,6 +32,11 @@ namespace Otus.Generics.Demo
         public ConsoleColor Background => ConsoleColor.Red;
     }
 
+
+    /// <summary>
+    /// Класс для цветного текста
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class ConsoleFormatter<T> where T : IConsoleSettings
     {
         private readonly T _settings;
@@ -55,7 +67,7 @@ namespace Otus.Generics.Demo
 
             var cf = new ConsoleFormatter<RedAndGreenSettings>(rg);
 
-            cf.WriteColored("Hellp");
+            cf.WriteColored("Hello, world");
 
         }
     }

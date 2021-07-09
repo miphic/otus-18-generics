@@ -2,30 +2,13 @@ using System;
 
 namespace Otus.Generics.Demo
 {
-    class CanConstraint
-    {
-        public override string ToString() => "Hey!";
-    }
-
-    class CannotConstraint
-    {
-        private int _a;
-
-        public CannotConstraint(int a)
-        {
-            _a = a;
-        }
-
-        public override string ToString() => $"i'm {_a}!";
-
-
-    }
-
-
 
 
     class EmptyConstructor { }
 
+    /// <summary>
+    /// Класс без конструктора без параметров 
+    /// </summary>
     class FullConstructor
     {
         private int _a;
@@ -36,6 +19,10 @@ namespace Otus.Generics.Demo
         }
     }
 
+    /// <summary>
+    /// Ограничение с конструктором
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class NewConstraint<T> where T : new()
     {
         public NewConstraint()
@@ -96,6 +83,10 @@ namespace Otus.Generics.Demo
     }
 
 
+/// <summary>
+/// 
+/// </summary>
+/// <typeparam name="TV"></typeparam>
     class Rider<TV> where TV : IVehicle
     {
         public void RideAVehicle(TV vehicle)

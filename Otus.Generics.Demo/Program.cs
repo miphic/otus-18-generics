@@ -35,16 +35,5 @@ namespace Otus.Generics.Demo
 
         }
 
-
-
-
-        #region Множественный дженерик
-
-        public void ShowMultiple()
-        {
-       
-        }
-
-        #endregion
     }
 }
