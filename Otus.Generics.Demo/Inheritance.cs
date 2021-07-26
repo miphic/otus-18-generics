@@ -12,15 +12,6 @@ namespace Otus.Generics.Demo
         public T[] Values { get; set; }
     }
 
-
-    /// <summary>
-    /// Базовый класс с коллекцией
-    /// </summary>
-    /// <typeparam name="T">Тип элемента</typeparam>
-    public class MyExtraCollection<T, K> : MyCollection<T>
-    {
-        public K[] ExtraValues { get; set; }
-    }
     public class ColOfNumbers
     : MyCollection<double>
     {
@@ -43,11 +34,6 @@ namespace Otus.Generics.Demo
             var con=new ColOfNumbers();
             con.Values=new double[]{1,2,3,4,5};
             Console.WriteLine($"Avg={con.GeomAvg()}");
-
-
-            var extra=new MyExtraCollection<double, int>();
-            extra.Values=new double[]{1,2,3,4,5};
-            extra.ExtraValues=new int[]{1,2,3,4,5};
         }
     }
 }

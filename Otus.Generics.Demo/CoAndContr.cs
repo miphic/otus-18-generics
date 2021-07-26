@@ -48,14 +48,12 @@ namespace Otus.Generics.Demo
             ICoVar<Vehicle> vec = new CoVar<Vehicle>();
 
             // Теперь можно приводить Automobile к Vehicle
-            vec= auto  ;
+            vec = auto;
 
 
-            IContrVar<Vehicle> v = new ContrVar<Vehicle>();
- IContrVar<Automobile> autocontr = new ContrVar<Automobile>();
-            v.Build(new Automobile());
+            IContrVar<Automobile> autocontr = new ContrVar<Vehicle>();
 
-            autocontr=v;
+            autocontr.Build(new Automobile());
 
         }
     }
@@ -69,8 +67,6 @@ namespace Otus.Generics.Demo
     interface IContrVar<in T>
     {
         void Build(T v);
-
-        
     }
 
     class ContrVar<T> : IContrVar<T>

@@ -37,7 +37,6 @@ namespace Otus.Generics.Task
             ISession<BigBusinessAccount> session2 = ms.Login<BigBusinessAccount>(ba.Id);
 
 
-
             // Создаем два логгер
             IBaseLogger<ISession<BigBusinessAccount>> bbLogger = new BigAccountLogger();
             IBaseLogger<ISession<BaseAccount>> baLogger = new BaseAccountLogger();

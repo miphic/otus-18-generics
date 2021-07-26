@@ -6,6 +6,8 @@ namespace Otus.Generics.Demo
 {
     public static class MyDefault
     {
+
+
         public static void DisplayDefault<T>()
         {
           var val=default(T);

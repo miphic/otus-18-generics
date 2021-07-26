@@ -8,7 +8,7 @@ namespace Otus.Generics.Task.Services
     /// Базрвый логгер
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface IBaseLogger<in T> where T : ISession<BaseAccount>
+    public interface IBaseLogger<T> where T : ISession<BaseAccount>
     {
         /// <summary>
         /// Логирует сессию
@@ -24,7 +24,7 @@ namespace Otus.Generics.Task.Services
     {
         public void LogSession(ISession<BaseAccount> session)
         {
-            MyConsole.WriteLine($"I'm BASE logger and this is  '{session.ToString()}'");
+            MyConsole.WriteLine($"I'm BASE logger and this is  '{session}'");
         }
     }
 
