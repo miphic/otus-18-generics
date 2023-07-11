@@ -7,7 +7,7 @@ namespace Otus.Generics.Task.Generics
     /// Базовый интерфейс сессии
     /// </summary>
     /// <typeparam name="TAccount">Тип аккаунта</typeparam>
-    public interface ISession<TAccount> where TAccount : BaseAccount
+    public interface ISession<out TAccount> where TAccount : BaseAccount
     {
         /// <summary>
         /// Дата создания сессии
