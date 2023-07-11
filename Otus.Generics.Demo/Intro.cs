@@ -1,28 +1,34 @@
 using System;
+using System.Collections.Generic;
 
 namespace Otus.Generics.Demo
 {
-    public class Intro<T>
+    public class Intro<THello>
     {
-        private T val;
+        private THello val;
 
-        public Intro(T v)
+        public Intro(THello v)
         => val = v;
-        
+
         public void PrintMe()
-        => Console.WriteLine($"I'm '{val}' and my type is '{typeof(T)}'");
+        => Console.WriteLine($"I'm '{val}' and my type is '{typeof(THello)}'");
 
         public void PrintMeType<K>(K v)
         => Console.WriteLine($"2. I'm '{v}' and my type is '{v.GetType()}'");
     }
 
+
     public class IntroShower : IBaseDemoShower
     {
         public void Show()
         {
-    
+            var listOfInt = new List<int>();
+            var listOfStrings = new List<string>();
+
             // При создании объекта - указываем тип в '<>'
             var intIntro = new Intro<int>(2);
+
+
             intIntro.PrintMe();
 
             var stringIntro = new Intro<string>("hello");
@@ -46,5 +52,15 @@ namespace Otus.Generics.Demo
             stringIntro.PrintMeType(E1.A);
             stringIntro.PrintMeType(E2.A);
         }
+    }
+    enum E1
+    {
+        A = 1
+    }
+
+
+    enum E2
+    {
+        A = 2,
     }
 }

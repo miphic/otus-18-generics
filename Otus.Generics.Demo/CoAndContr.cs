@@ -1,31 +1,59 @@
 using System;
+using System.Collections.Generic;
 
 namespace Otus.Generics.Demo
 {
-    interface ICoVar<out T> { }
+    public interface IMy<out T> { }
 
-    class CoVar<T> : ICoVar<T> { }
+    public class My<T> : IMy<T> { }
 
 
-    class Vehicle { }
+    public class Vehicle
+    {
+        public virtual void Go()
+        {
+            Console.WriteLine("Vehicle");
+        }
+    }
 
-    class Automobile : Vehicle { }
+    public class Automobile : Vehicle
+    {
+        public override void Go()
+        {
+            Console.WriteLine("I'm CAR");
+        }
+    }
 
+    class SuperAuto : Automobile { }
 
     public class CoContrVarShower : IBaseDemoShower
     {
 
 
-        private void DemonstrateContrVar(IContrVar<Vehicle> vs)
+        private void DemonstrateContrVar(IFancyComparator<Vehicle> vs)
         {
             Console.WriteLine($"{vs}");
         }
 
 
-        interface IDemo<out T> { }
-        
-        class ClassDemo<T> : IDemo<T> { }
+        interface IDemo<out T>
+        {
+            void Print();
 
+        }
+
+        class ClassDemo<T> : IDemo<T>
+        {
+            public void Print()
+            {
+                Console.WriteLine($"I work with {typeof(T)}");
+            }
+        }
+
+        public void GetVehicle(Vehicle v)
+        {
+            v.Go();
+        }
         public void Show()
         {
             Automobile a = new Automobile();
@@ -34,28 +62,41 @@ namespace Otus.Generics.Demo
             // Так можно
             b = a;
 
+            GetVehicle(b);
 
+            //     return;
 
-            IDemo<Automobile> demoA = new ClassDemo<Automobile>();
-            IDemo<Vehicle> demoB = new ClassDemo<Vehicle>();
+            IDemo<Automobile> demoAuto = new ClassDemo<Automobile>();
+            IDemo<Vehicle> demoVehicle = new ClassDemo<Vehicle>();
 
             // а так - нельзя
-            demoB = demoA;
+            demoVehicle = demoAuto;
 
 
+            IMy<SuperAuto> auto = new My<SuperAuto>();
+            IMy<Vehicle> vec = new My<Vehicle>();
 
-            ICoVar<Automobile> auto = new CoVar<Automobile>();
-            ICoVar<Vehicle> vec = new CoVar<Vehicle>();
-
-            // Теперь можно приводить Automobile к Vehicle
+            //// Теперь можно приводить Automobile к Vehicle
             vec = auto;
 
-
-            IContrVar<Automobile> autocontr = new ContrVar<Vehicle>();
+            IFancyComparator<Automobile> autocontr = new FancyComparator<Vehicle>();
 
             autocontr.Build(new Automobile());
 
+            var a1 = new Automobile();
+            var a2 = new Automobile();
+            Compare2Autos(a1, a2, autocontr);
+
         }
+
+        public void Compare2Autos(
+            Automobile a1,
+            Automobile a2,
+            IFancyComparator<Automobile> comparator)
+        {
+
+        }
+
     }
 
 
@@ -64,14 +105,19 @@ namespace Otus.Generics.Demo
 
 
 
-    interface IContrVar<in T>
+    public interface IFancyComparator<in T>
     {
         void Build(T v);
     }
 
-    class ContrVar<T> : IContrVar<T>
+    public class FancyComparator<T> : IFancyComparator<T>
+           where T : Vehicle
     {
-        public void Build(T v) { }
+        public void Build(T v)
+        {
+            Console.WriteLine($"I'm typeof {typeof(T)}");
+            v.Go();
+        }
     }
 
 

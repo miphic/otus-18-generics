@@ -8,24 +8,31 @@ namespace Otus.Generics.Demo
     {
 
 
-        public static void DisplayDefault<T>()
+        public static void DisplayDefault<T>(T val = default(T))
         {
-          var val=default(T);
-
+            if(val==null || val.Equals( default))
+            {
+                Console.WriteLine("Dfea");
+            }
             Console.WriteLine($"The value of type {typeof(T)} is: {(val == null ? "null" : val.ToString())}");
-      }
+        }
 
     }
 
-    class Foo{}
+    class Foo { }
 
     public class DefaultShower : IBaseDemoShower
     {
         public void Show()
         {
             MyDefault.DisplayDefault<int>();
+            MyDefault.DisplayDefault<int>(124);
+
+
 
             MyDefault.DisplayDefault<bool>();
+
+            MyDefault.DisplayDefault<bool>(true);
             MyDefault.DisplayDefault<DateTime>();
             MyDefault.DisplayDefault<Foo>();
             MyDefault.DisplayDefault<string>();
